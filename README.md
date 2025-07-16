@@ -52,7 +52,7 @@ Déploiement d'Istio
 Configuration du traffic management
 Mise en place de politiques de sécurité (mTLS, RBAC)
 
-Défis techniques spécifiques
+# Défis techniques spécifiques
 
 Zero-downtime deployments avec rolling updates et health checks
 Backup automatisé des données et configuration avec rotation
@@ -61,7 +61,7 @@ Auto-scaling : HPA sur les pods + monitoring des métriques custom
 Multi-environment : même infrastructure déployable en dev/staging/prod
 Documentation : playbook d'incident et runbooks
 
-Contraintes "entreprise" à respecter
+# Contraintes "entreprise" à respecter
 
 Tout doit être versionné et reproductible
 Logs centralisés avec rétention de 30 jours
