@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sticky Note</title>
+</head>
+<body>
+    <h1>Sticky Note 🗒️</h1>
+
+    <form method="POST" action="{% url 'create_note' %}">
+        {% csrf_token %}
+        <input type="text" name="title" placeholder="Titre" required>
+        <textarea name="content" placeholder="Contenu" required></textarea>
+        <button type="submit">Ajouter</button>
+    </form>
+
+    <hr>
+
+    <ul>
+        {% for note in notes %}
+            <li>
+                <strong>{{ note.title }}</strong><br>
+                {{ note.content }}<br>
+                <a href="{% url 'delete_note' note.id %}">Supprimer</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

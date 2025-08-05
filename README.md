@@ -1,6 +1,6 @@
 # Projet : Infrastructure de monitoring et CI/CD complète pour une stack microservices
 Contexte
-Tu vas créer l'infrastructure complète pour une entreprise fictive qui a 3 microservices (API Gateway, Service User, Service Order) avec une base de données, et qui veut une solution de monitoring, logging, et CI/CD robuste.
+Tu vas créer l'infrastructure complète pour une entreprise nomme NGAP qui a 3 microservices (API Gateway, Service User, Service Order) avec une base de données, et qui veut une solution de monitoring, logging, et CI/CD robuste.
 Architecture cible
 
 # Applications : 3 microservices en containers (tu peux utiliser des apps simples Node.js/Python/Go)
@@ -68,3 +68,9 @@ Logs centralisés avec rétention de 30 jours
 Alertes par email/Slack simulé
 Respect des standards de sécurité (pas de secrets en dur)
 Interface web pour les développeurs (GitLab + Grafana + Kibana)
+
+
+
+github action
+next react 
+python python uv 

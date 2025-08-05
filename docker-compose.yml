@@ -1,0 +1,50 @@
+version: '3.9'
+
+services:
+  database:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_DB: stickynote
+      POSTGRES_USER: stickynote
+      POSTGRES_PASSWORD: password
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - sticky-net
+
+  backend:
+    build: ./backend
+    restart: always
+    depends_on:
+      - database
+    environment:
+      DB_NAME: stickynote
+      DB_USER: stickynote
+      DB_PASSWORD: password
+      DB_HOST: database
+      DB_PORT: 5432
+    volumes:
+      - ./backend:/app
+    networks:
+      - sticky-net
+    ports:
+      - "8001:8001"
+
+  frontend:
+    build: ./frontend
+    restart: always
+    depends_on:
+      - backend
+    volumes:
+      - ./frontend:/app
+    networks:
+      - sticky-net
+    ports:
+      - "8000:8000"
+
+volumes:
+  pgdata:
+
+networks:
+  sticky-net:
