@@ -1,7 +1,159 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
-    <title>Sticky Note</title>
+    <meta charset="UTF-8">
+    <title>Sticky Note 🗒️</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+    :root {
+    --primary-yellow: #fff176;
+    --hover-yellow: #ffee58;
+    --light-bg: #fdfdfd;
+    --note-bg: #fffde7;
+    --text-color: #333;
+    --shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 1rem;
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    background-color: #f0f2f5;
+    color: var(--text-color);
+}
+
+h1 {
+    text-align: center;
+    color: #444;
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+}
+
+form {
+    background: var(--light-bg);
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+input[type="text"],
+textarea {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fafafa;
+    resize: vertical;
+}
+
+button {
+    background-color: var(--primary-yellow);
+    border: none;
+    padding: 0.8rem 1.2rem;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    align-self: flex-start;
+}
+
+button:hover {
+    background-color: var(--hover-yellow);
+}
+
+hr {
+    max-width: 600px;
+    margin: 3rem auto 2rem;
+    border: none;
+    border-top: 1px solid #ccc;
+}
+
+ul {
+    max-width: 600px;
+    margin: auto;
+    padding: 0 1rem;
+    list-style: none;
+}
+
+li {
+    background: var(--note-bg);
+    margin-bottom: 1.2rem;
+    padding: 1.2rem;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    position: relative;
+    word-wrap: break-word;
+}
+
+li strong {
+    font-size: 1.1rem;
+}
+
+li a {
+    color: #d32f2f;
+    font-size: 0.9rem;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+li a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 0.5rem;
+    }
+
+    form,
+    ul {
+        padding: 0.5rem;
+    }
+
+    form {
+        box-shadow: none;
+        border-radius: 0;
+        padding: 1rem 0.5rem;
+    }
+
+    li {
+        padding: 1rem;
+        font-size: 0.95rem;
+    }
+
+    h1 {
+        font-size: 1.4rem;
+    }
+
+    button {
+        width: 100%;
+    }
+
+    li a {
+        position: static;
+        margin-top: 0.5rem;
+        display: inline-block;
+    }
+}
+    
+    </style>
 </head>
 <body>
     <h1>Sticky Note 🗒️</h1>
@@ -9,7 +161,7 @@
     <form method="POST" action="{% url 'create_note' %}">
         {% csrf_token %}
         <input type="text" name="title" placeholder="Titre" required>
-        <textarea name="content" placeholder="Contenu" required></textarea>
+        <textarea name="content" placeholder="Contenu" rows="4" required></textarea>
         <button type="submit">Ajouter</button>
     </form>
 
@@ -19,8 +171,8 @@
         {% for note in notes %}
             <li>
                 <strong>{{ note.title }}</strong><br>
-                {{ note.content }}<br>
-                <a href="{% url 'delete_note' note.id %}">Supprimer</a>
+                {{ note.content|linebreaksbr }}
+                <a href="{% url 'delete_note' note.id %}">🗑️ Supprimer</a>
             </li>
         {% endfor %}
     </ul>
